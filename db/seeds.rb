@@ -56,4 +56,8 @@ characterSeed = [
 
 Character.create(characterSeed)
 
+appointmentSeed = [
+    {date: Date.parse("2020-10-17"), location: "starbucks", user_id: 1, outfit_id: 1, character_id: 1}
+]
 
+Appointment.create(appointmentSeed)
