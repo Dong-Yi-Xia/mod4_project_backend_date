@@ -8,7 +8,7 @@
 
 
 userSeed = [
-    {username: "user1", password: "abc123", age: 15, gender: "male", bio: "A average young male. Everything is average.",
+    {username: "user1", password: "abc123", name: "Wannabe", age: 15, gender: "male", bio: "A average young male. Everything is average.",
     looks: 5, smarts: 5, athletic: 5, finance: 5, kindness: 5}
 ]
 
