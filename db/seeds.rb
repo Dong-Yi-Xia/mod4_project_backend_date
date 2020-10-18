@@ -17,7 +17,7 @@ User.create(userSeed)
 
 outfitSeed = [
     {outfitname: "uniformNum1", headwear: "white baseball cap", topwear: "white polo tshirt", bottomwear: "white jogging pants",
-    shoe: "white nike training shoe", user_id: 1}
+    shoe: "white nike training shoe", accessories: "necklace whistle", user_id: 1}
 ]
 
 Outfit.create(outfitSeed)
