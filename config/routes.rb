@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     get '/appointments', to: 'appointments#index'
     get '/outfits', to: 'outfits#index'
   
+    patch '/characters/:id', to: 'characters#update'
+
 end
