@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
     post "/users/login", to: "users#login"
     post "/users", to: "users#create"
-    # get "/users/:id", to: "users#show"
+    get "/users/:id", to: "users#show"
     get "/users/keep_logged_in", to: "users#keep_logged_in"
 
 end
