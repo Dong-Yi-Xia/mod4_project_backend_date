@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     patch '/characters/:id', to: 'characters#update'
     post '/appointments', to: 'appointments#create'
     post '/outfits', to: 'outfits#create'
+    delete '/outfits/:id', to: 'outfits#destroy'
 
 
     post "/users/login", to: "users#login"

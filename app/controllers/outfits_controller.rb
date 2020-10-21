@@ -12,6 +12,13 @@ class OutfitsController < ApplicationController
     end
 
 
+    def destroy
+      @outfit = Outfit.find(params[:id])
+      @outfit.destroy
+      render json: @outfit
+    end 
+
+
     
     private
 
