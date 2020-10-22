@@ -10,6 +10,13 @@ class AppointmentsController < ApplicationController
         render json: @appointment
    end
 
+   def destroy
+        @appointment = Appointment.find(params[:id])
+        @appointment.destroy
+        render json: @appointment
+   end
+   
+
    private
 
    def appointment_params
