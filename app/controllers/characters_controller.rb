@@ -1,5 +1,7 @@
 class CharactersController < ApplicationController
 
+    before_action :authorized, only: [:update]
+
     def index
         @characters = Character.all
         render json: @characters
@@ -8,8 +10,13 @@ class CharactersController < ApplicationController
 
     def update
         @character = Character.find(params[:id])
-        @character.update(character_params)
-        render json: @character
+        if @character.valid?
+            @character.update(character_params)
+            render json: @character
+        else
+            render json: {error: "Please Log-In"}, status: 422
+        end
+
     end
 
 

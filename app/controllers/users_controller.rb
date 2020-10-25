@@ -1,22 +1,26 @@
 class UsersController < ApplicationController
     
-    # before_action :authorized, only: [:keep_logged_in]
+    before_action :authorized, only: [:keep_logged_in]
 
     def index
          @users = User.all
          render json: @users
     end
 
-    def show 
-        @user = User.find(params[:id])
-        render json: @user
-    end
+    # def show 
+    #     @user = User.find(params[:id])
+    #     render json: @user
+    # end
 
 
     def login
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
-            render json: @user
+            wristband_token = encode_token({user_id: @user.id})
+            render json: {
+                user: UserSerializer.new(@user), 
+                token: wristband_token
+            }
         else
             render json: {error: "INCORRECT USERNAME OR PASSWORD"}, status: 422
         end
@@ -26,7 +30,11 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.valid?
-            render json: @user
+            wristband_token = encode_token({user_id: @user.id})
+            render json: {
+                user: UserSerializer.new(@user), 
+                token: wristband_token
+            }
         else
             render json: {error: "Missing Information"}, status: 422
         end
@@ -34,30 +42,17 @@ class UsersController < ApplicationController
 
 
 
-    # def login
-    #     @user = User.find_by(username: params[:username])
-    #     if @user && @user.authenticate(params[:password])
-    #         token = encode_token({user_id: @user.id})
+    def keep_logged_in
+        # @user exists here because of the before_action
+        wristband_token = encode_token({user_id: @user.id})
 
-    #         render json: @user{
-    #             user: UserSerializer.new(@user), 
-    #             token: token
-    #         }
-    #     else
-    #         render json: {error: "INCORRECT USERNAME OR PASSWORD"}, status: 422
-    #     end
-    # end
+        render json: {
+            user: UserSerializer.new(@user), 
+            token: wristband_token
+        }
 
+    end
 
-    # def keep_logged_in
-    #     # @user exists here because of the before_action
-    #    token = encode_token({user_id: @user.id})
-
-    #     render json: {
-    #         user: UserSerializer.new(@user), 
-    #         token: token
-    #     }
-    # end
 
 
     private
