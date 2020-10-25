@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
 
-     before_action :authorized, only: [:create, :destroy]
+     # before_action :authorized, only: [:create, :destroy]
 
     def index
         @appointments = Appointment.all
@@ -9,12 +9,7 @@ class AppointmentsController < ApplicationController
 
    def create
         @appointment = Appointment.create(appointment_params)
-        if @appointment.valid?
-          render json: @appointment
-     else
-          render json: {error: "Please Log-In"}, status: 422
-     end
-        
+        render json: @appointment        
    end
 
    def destroy

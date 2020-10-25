@@ -1,6 +1,6 @@
 class OutfitsController < ApplicationController
     
-   before_action :authorized, only: [:create, :destroy]
+#    before_action :authorized, only: [:create, :destroy]
 
     def index
         @outfits = Outfit.all
@@ -10,11 +10,7 @@ class OutfitsController < ApplicationController
 
     def create
          @outfit = Outfit.create(outfit_params)
-         if @outfit.valid?
-              render json: @outfit
-         else
-              render json: {error: "Please Log-In"}, status: 422
-         end
+         render json: @outfit  
     end
 
 
