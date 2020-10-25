@@ -1,6 +1,6 @@
 class OutfitsController < ApplicationController
     
-#    before_action :authorized, only: [:create, :destroy]
+   before_action :authorized, only: [:create, :destroy]
 
     def index
         @outfits = Outfit.all

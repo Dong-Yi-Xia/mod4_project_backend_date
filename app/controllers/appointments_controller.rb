@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
 
-     # before_action :authorized, only: [:create, :destroy]
+     before_action :authorized, only: [:create, :destroy]
 
     def index
         @appointments = Appointment.all

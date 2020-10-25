@@ -1,6 +1,6 @@
 class CharactersController < ApplicationController
 
-    # before_action :authorized, only: [:update]
+    before_action :authorized, only: [:update]
 
     def index
         @characters = Character.all
